@@ -128,3 +128,76 @@ $bottom-height: 80px;
         }
     }
 }
+
+.player-info-wrap {
+    display: block;
+
+    .modal-wrapper {
+        align-items: flex-start;
+        padding-top: 2.5vw;
+    }
+
+    .modal-content {
+        width: 95vw;
+        height: 90vh;
+        padding: 15px 0;
+        display: flex;
+        flex-direction: column;
+        overflow: initial;
+
+        h2 {
+            text-align: center;
+            width: 100%;
+            margin: 5px auto;
+        }
+
+        .lrc {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            text-align: center;
+
+            ol {
+                padding: 0;
+            }
+
+            li {
+                list-style: none;
+                line-height: 1.4;
+                padding: 3px 10px;
+                opacity: .8;
+
+                &.active {
+                    opacity: 1;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .close {
+            background: #fff;
+            border: 1px solid transparent;
+            display: block;
+            width: 60px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 auto;
+            transform: translateY(32px);
+            font-size: 25px;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            color: #666;
+
+            &:active {
+                background: #f7f7f7;
+
+            }
+        }
+    }
+
+    .info-img {
+        width: 150px;
+        margin: 10px auto;
+        display: block;
+    }
+}

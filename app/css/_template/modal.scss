@@ -4,7 +4,7 @@
 
 .modal {
     position: fixed;
-    z-index: 9999999999;
+    z-index: 2019;
     top: 0;
     left: 0;
     width: 100%;
@@ -22,7 +22,6 @@
 
     .modal-content {
         background-color: #fff;
-        border-radius: 15px;
         overflow: hidden;
     }
 

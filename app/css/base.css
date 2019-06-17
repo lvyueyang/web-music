@@ -22,10 +22,10 @@ body {
   padding: 0;
   font-size: 14px;
   background-color: #fff;
-  font-family: "PingFang SC Regular", "Microsoft YaHei"; }
+  font-family: Monda, PingFang SC, Microsoft YaHei, sans-serif; }
 
 select, input, textarea {
-  font-family: "PingFang SC Regular", "Microsoft YaHei"; }
+  font-family: Monda, PingFang SC, Microsoft YaHei, sans-serif; }
 
 ul, dl, dd {
   margin: 0;
@@ -45,7 +45,7 @@ table {
 
 .modal {
   position: fixed;
-  z-index: 9999999999;
+  z-index: 2019;
   top: 0;
   left: 0;
   width: 100%;
@@ -60,7 +60,6 @@ table {
     justify-content: center; }
   .modal .modal-content {
     background-color: #fff;
-    border-radius: 15px;
     overflow: hidden; }
   .modal .modal-footer {
     height: 50px;
@@ -181,3 +180,54 @@ table {
         font-size: 12px; }
     .player-wrap .player-item audio {
       flex: 1; }
+
+.player-info-wrap {
+  display: block; }
+  .player-info-wrap .modal-wrapper {
+    align-items: flex-start;
+    padding-top: 2.5vw; }
+  .player-info-wrap .modal-content {
+    width: 95vw;
+    height: 90vh;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    overflow: initial; }
+    .player-info-wrap .modal-content h2 {
+      text-align: center;
+      width: 100%;
+      margin: 5px auto; }
+    .player-info-wrap .modal-content .lrc {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      text-align: center; }
+      .player-info-wrap .modal-content .lrc ol {
+        padding: 0; }
+      .player-info-wrap .modal-content .lrc li {
+        list-style: none;
+        line-height: 1.4;
+        padding: 3px 10px;
+        opacity: .8; }
+        .player-info-wrap .modal-content .lrc li.active {
+          opacity: 1;
+          font-weight: 700; }
+    .player-info-wrap .modal-content .close {
+      background: #fff;
+      border: 1px solid transparent;
+      display: block;
+      width: 60px;
+      height: 40px;
+      border-radius: 50%;
+      margin: 0 auto;
+      transform: translateY(32px);
+      font-size: 25px;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      color: #666; }
+      .player-info-wrap .modal-content .close:active {
+        background: #f7f7f7; }
+  .player-info-wrap .info-img {
+    width: 150px;
+    margin: 10px auto;
+    display: block; }
