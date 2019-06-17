@@ -1,0 +1,17 @@
+@keyframes loadingRotate{
+  0%{
+    transform:rotate(0deg);
+  }
+  100%{
+    transform:rotate(360deg);
+  }
+}
+
+@keyframes bgFade{
+  0%{
+    background: rgba(36, 207, 95, 0.1);
+  }
+  100%{
+    background: rgba(36, 207, 95, 0);
+  }
+}

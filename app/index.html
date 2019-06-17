@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum=1.0,user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>听音乐</title>
+    <link rel="stylesheet" href="./css/base.css">
+</head>
+<body>
+<div id="app">
+    <div class="header-search">
+        <input type="text" @input="search" placeholder="请输入要搜索的歌曲名称">
+    </div>
+
+    <div class="music-list">
+        <div class="item" :class="{active: v.songid === playing.songid}" v-if="v.show" v-for="(v,index) in list" :key="v.songid"
+             @click="toPlay(index)">
+            <div class="title">
+                <span class="index">{{index + 1}}.</span> {{v.title}}
+            </div>
+            <small class="user">{{v.author}}</small>
+        </div>
+    </div>
+
+    <div class="player-wrap">
+        <div class="player-item" v-if="playing">
+            <div class="pic"><img :src="playing.pic" alt=""></div>
+            <audio controls ref="Audio" :src="playing.url"></audio>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+<!--<script src="./plugin/vue.min.js"></script>-->
+<script src="./plugin/axios.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>-->
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            list: [],
+            playing: null
+        },
+        created() {
+        },
+        mounted() {
+            this.getList()
+        },
+        methods: {
+            getList() {
+                const url = `./js/jayjsondata.json`
+                axios.get(url).then(res => {
+                    this.list = res.data.map(item => {
+                        let obj = {
+                            show: true,
+                        }
+                        obj = Object.assign(obj, item)
+                        return obj
+                    })
+                    this.playing = this.list[0]
+                }).catch(e => {
+                    console.log(e)
+                })
+            },
+            toPlay(index) {
+                const item = this.list[index]
+                const audio = this.$refs.Audio
+                if (this.playing.songid === item.songid && !audio.paused) {
+                    this.$nextTick(() => {
+                        this.$refs.Audio.pause()
+                    })
+                } else {
+                    this.playing = item
+                    this.$nextTick(() => {
+                        audio.play()
+                    })
+                }
+
+            },
+            search(e) {
+                const val = e.target.value
+                this.list.forEach(item => {
+                    if (item.title.includes(val)) {
+                        item.show = true
+                    } else {
+                        item.show = false
+                    }
+                })
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>
