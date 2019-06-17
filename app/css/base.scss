@@ -22,6 +22,7 @@ $bottom-height: 80px;
     height: $top-height;
     box-shadow: 0 0 5px #ccc;
     background-color: #fff;
+    z-index: 10;
 
     input {
         width: 100%;
@@ -199,5 +200,50 @@ $bottom-height: 80px;
         width: 150px;
         margin: 10px auto;
         display: block;
+    }
+}
+
+.loading-wrap {
+    text-align: center;
+    font-size: 14px;
+    color: #ccc;
+    margin-top: 100px;
+    .first-loading {
+        position: relative;
+        width: 50px; /*no*/
+        height: 50px; /*no*/
+        border: 2px solid #ccc; /*no*/
+        border-radius: 50%;
+        border-left: 2px solid transparent; /*no*/
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0 auto 10px;
+        display: block;
+        animation: loading 1s linear infinite;
+    }
+
+    .first-loading:after {
+        position: absolute;
+        content: "";
+        top: -2px; /*no*/
+        left: -2px; /*no*/
+        bottom: -2px; /*no*/
+        right: -2px; /*no*/
+        border: 2px solid transparent; /*no*/
+        border-radius: 50%;
+        border-left: 2px solid #ccc; /*no*/
+        box-sizing: border-box;
+        transform-origin: center center;
+        transform: rotate(50deg);
+    }
+}
+
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
