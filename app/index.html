@@ -10,7 +10,7 @@
     <script>
         (function () {
             const url = window.location.origin
-            if (url.indexOf('127.0.0.1') >= 0) {
+            if (url.indexOf('127.0.0.1') >= 0 || url.indexOf('localhost') >= 0) {
                 return
             }
             if (url.indexOf('lvyueyang.top') === -1) {
@@ -55,9 +55,9 @@
             <div class="modal-content" v-if="playing">
                 <h2>{{playing.title}}</h2>
                 <img class="info-img" :src="playing.pic" alt="">
-                <div class="lrc">
+                <div class="lrc" v-if="playing.lrcData">
                     <ol>
-                        <li v-for="v in playing.lrcData">{{v}}</li>
+                        <li v-for="(v) in playing.lrcData">{{v}}</li>
                     </ol>
                 </div>
                 <button class="close" @click="show = false">×</button>
@@ -65,7 +65,7 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
 <!--<script src="./plugin/vue.min.js"></script>-->
 <!--<script src="./plugin/axios.min.js"></script>-->
 <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
@@ -108,7 +108,8 @@
                 this.show = true
                 const id = this.playing.songid
                 axios.get(`./data/lrcs/${id}.json`).then(res => {
-                    this.$set(this.playing, 'lrcData', formatLrc(res.data.lrc))
+                    const src = formatLrc(res.data.lrc)
+                    this.playing = Object.assign(this.playing, {lrcData: src})
                 })
             },
             getList() {
@@ -121,8 +122,8 @@
                         }
                         return item
                     })
-                    this.playing = this.list[0]
-
+                    this.playing = Object.assign({lrcData: ''}, this.list[0])
+                    
                     // 播放完毕之后自动播放下一首
                     this.$nextTick(() => {
                         const audio = this.$refs.Audio
@@ -161,7 +162,7 @@
                         this.$refs.Audio.pause()
                     })
                 } else {
-                    this.playing = item
+                    this.playing = Object.assign({lrcData: ''}, item)
                     this.$nextTick(() => {
                         audio.play()
                     })
