@@ -9,6 +9,8 @@ test/e2e/reports
 selenium-debug.log
 doc/
 
+app/data/list.json
+
 # Editor directories and files
 .idea
 *.suo
