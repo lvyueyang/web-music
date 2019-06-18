@@ -112,7 +112,7 @@
                 })
             },
             getList() {
-                const url = `./data/list.json`
+                const url = `./data/list.json?timestamp=${Date.now()}`
                 axios.get(url).then(res => {
                     this.list = res.data.map(item => {
                         item.show = true
