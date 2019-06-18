@@ -189,7 +189,7 @@ table {
     padding-top: 2.5vw; }
   .player-info-wrap .modal-content {
     width: 95vw;
-    height: 90vh;
+    height: 90%;
     padding: 15px 0;
     display: flex;
     flex-direction: column;
@@ -200,6 +200,7 @@ table {
       margin: 5px auto; }
     .player-info-wrap .modal-content .lrc {
       flex: 1;
+      height: 100%;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       text-align: center; }
@@ -225,7 +226,9 @@ table {
       font-size: 25px;
       outline: none;
       -webkit-tap-highlight-color: transparent;
-      color: #666; }
+      color: #666;
+      text-align: center;
+      padding: 0; }
       .player-info-wrap .modal-content .close:active {
         background: #f7f7f7; }
   .player-info-wrap .info-img {

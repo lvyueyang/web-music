@@ -34,7 +34,7 @@
     <!--播放器-->
     <div class="player-wrap">
         <div class="player-item" v-if="playing">
-            <div class="pic" @click="show = true"><img :src="playing.pic" alt=""></div>
+            <div class="pic" @click="showModal"><img :src="playing.pic" alt=""></div>
             <audio controls ref="Audio" :src="playing.url"></audio>
         </div>
     </div>
@@ -92,9 +92,18 @@
             this.getList()
         },
         methods: {
+            // 显示歌词
+            showModal() {
+                this.show = true
+                const id = this.playing.songid
+                axios.get(`./js/lrcs/${id}.json`).then(res => {
+                    this.$set(this.playing, 'lrcData', formatLrc(res.data.lrc))
+                })
+            },
             getList() {
-                const url = `./js/jayjsondata.json`
+                const url = `./js/jayjsondataNolrc.json`
                 axios.get(url).then(res => {
+                    console.log(res.data.length)
                     this.list = res.data.map(item => {
                         let obj = {
                             show: true,
@@ -103,7 +112,6 @@
                         return obj
                     })
                     this.playing = this.list[0]
-                    this.playing.lrcData = formatLrc(this.list[0].lrc)
 
                     // 播放完毕之后自动播放下一首
                     this.$nextTick(() => {

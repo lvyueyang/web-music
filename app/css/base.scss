@@ -140,7 +140,7 @@ $bottom-height: 80px;
 
     .modal-content {
         width: 95vw;
-        height: 90vh;
+        height: 90%;
         padding: 15px 0;
         display: flex;
         flex-direction: column;
@@ -154,6 +154,7 @@ $bottom-height: 80px;
 
         .lrc {
             flex: 1;
+            height: 100%;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             text-align: center;
@@ -188,6 +189,8 @@ $bottom-height: 80px;
             outline: none;
             -webkit-tap-highlight-color: transparent;
             color: #666;
+            text-align: center;
+            padding: 0;
 
             &:active {
                 background: #f7f7f7;
