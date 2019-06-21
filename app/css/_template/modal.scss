@@ -1,0 +1,54 @@
+@import "function";
+@import "var";
+@import "mixin";
+
+.modal {
+    position: fixed;
+    z-index: 2019;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .4);
+    display: none;
+
+    .modal-wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        overflow: hidden;
+    }
+
+    .modal-footer {
+        height: 50px;
+        display: flex;
+        border-top: 1px solid #e4e4e4;
+
+        button {
+            flex: 1;
+            background-color: #fff;
+            color: #a5a5a5;
+            border: none;
+
+            &:last-of-type {
+                border-left: 1px solid #e4e4e4;
+            }
+
+            &:nth-child(1) {
+                border-left: none;
+            }
+
+            &.ok {
+                background-color: #a6cb1c;
+                color: #fff;
+            }
+        }
+    }
+}
+

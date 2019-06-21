@@ -1,0 +1,42 @@
+@import "function";
+@import "var";
+
+//....
+@mixin lineclamp($number:1){
+  @if($number == 1){
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }@else {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $number;
+    overflow: hidden;
+  }
+}
+
+//flex
+@mixin flex_item_center(){
+  display: flex;
+  align-items:center;
+}
+@mixin flex_item_start(){
+  display: flex;
+  align-items:flex-start;
+}
+@mixin flex_item_end(){
+  display: flex;
+  align-items:flex-end;
+}
+@mixin flex_justify_center(){
+  display: flex;
+  justify-content: center;
+}
+@mixin flex_justify_start(){
+  display: flex;
+  justify-content: flex-start;
+}
+@mixin flex_justify_(){
+  display: flex;
+  justify-content: flex-end;
+}
