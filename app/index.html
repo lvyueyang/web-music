@@ -102,12 +102,13 @@
                 })
             },
             getList() {
+                // http://jay-music.lvyueyang.top/0003p6Ws222T5X.mp3
                 const url = `../system/musicList.json?timestamp=${Date.now()}`
                 axios.get(url).then(res => {
                     this.list = res.data.map(item => {
                         item.show = true
                         const mediaType = item.url.split('?')[0].split('com/')[1].split('.')[1]
-                        item.url = `http://ptgfot33a.bkt.clouddn.com/${item.songid}.${mediaType}`
+                        item.url = `http://jay-music.lvyueyang.top/${item.songid}.${mediaType}`
                         return item
                     })
                     this.playing = Object.assign({lrcData: ''}, this.list[0])
