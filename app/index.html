@@ -107,10 +107,7 @@
                 axios.get(url).then(res => {
                     this.list = res.data.map(item => {
                         item.show = true
-                        const arr = item.path.split('/')
-                        const index = arr[0]
-                        const name = arr[1]
-                        item.url = `https://gitee.com/jayMusic/jayMusic${index}/raw/master/${name}`
+                        item.url = `http://jaymusic.gitee.io/jaymusic${item.path}`
                         return item
                     })
                     this.playing = Object.assign({lrcData: ''}, this.list[0])
