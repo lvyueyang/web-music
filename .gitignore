@@ -20,4 +20,5 @@ app/data/list.json
 
 system/CONFIG.js
 system/downloadFiles/*
+system/musicGroup/*
 system/node_modules/

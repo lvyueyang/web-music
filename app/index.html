@@ -102,13 +102,15 @@
                 })
             },
             getList() {
-                // http://jay-music.lvyueyang.top/0003p6Ws222T5X.mp3
+                // https://gitee.com/jayMusic/jayMusic28/raw/master/003EosTG01e9bh.mp3
                 const url = `../system/musicList.json?timestamp=${Date.now()}`
                 axios.get(url).then(res => {
                     this.list = res.data.map(item => {
                         item.show = true
-                        const mediaType = item.url.split('?')[0].split('com/')[1].split('.')[1]
-                        item.url = `http://jay-music.lvyueyang.top/${item.songid}.${mediaType}`
+                        const arr = item.path.split('/')
+                        const index = arr[0]
+                        const name = arr[1]
+                        item.url = `https://gitee.com/jayMusic/jayMusic${index}/raw/master/${name}`
                         return item
                     })
                     this.playing = Object.assign({lrcData: ''}, this.list[0])
