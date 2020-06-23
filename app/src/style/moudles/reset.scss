@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    background: #141e30;
+    background: linear-gradient(to right, #141e30, #243b55);
+    color: #fff;
+    width: 100%;
+}
+
+body {
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+*::selection {
+    background: #333;
+    color: #fff;
+}
+
+*::-moz-selection {
+    background: #333;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+select, input, textarea {
+    font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+ul, dl, dd {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    border: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.cur, button {
+    cursor: pointer;
+}
+
+textarea,
+select,
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"] {
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 0 0 0 5px;
+    min-height: 30px;
+    width: 100%;
+    font-size: 14px;
+    color: #333;
+
+    &:focus {
+        border-color: #333;
+    }
+}
+
+select {
+    width: auto;
+}
+
+textarea {
+    padding: 5px;
+}
+
+//input:-webkit-autofill {
+//  -webkit-box-shadow: inset 0 0 0 1000px #fff;
+//  background-color: transparent;
+//}
+
+button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    outline: none;
+    color: #333;
+
+    &:active {
+        opacity: .8;
+    }
+
+    i {
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
+    }
+}
