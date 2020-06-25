@@ -7,8 +7,8 @@
         <div class="list">
             <div class="item" v-for="(v,index) in list" :key="v.songid" @click="handlerPlay(v)">
                 <div class="index">
-                    <span>{{index + 1}}</span>
-                    <img v-if="false" src="../static/img/wave.gif" alt="">
+                    <img v-if="activeId === v.songid" src="../static/img/wave.gif" alt="">
+                    <span v-else>{{index + 1}}</span>
                 </div>
                 <div class="name">{{v.title}}</div>
                 <div class="author">{{v.author}}</div>
@@ -21,23 +21,34 @@
         name: 'List',
         props: {},
         data() {
-            return {}
-        },
-        computed: {
-            list() {
-                return this.$root.list
+            return {
+                list: [],
+                activeId: null
             }
         },
+        computed: {},
         mounted() {
+            this.getList()
+            this.$song.on('play', item => {
+                this.activeId = item.songid
+            })
         },
         methods: {
+            async getList() {
+                try {
+                    this.list = await this.$utils.getJson('/jay-music/musicList.json')
+                    this.$song.pushSong(this.list)
+                } catch (e) {
+                    console.error(e)
+                }
+            },
             handlerPlay(item) {
-                this.$root.playing = item
+                this.$song.play(item)
             }
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .music-list {
         flex: 1;
         display: flex;
@@ -75,6 +86,26 @@
         .list {
             flex: 1;
             overflow: auto;
+
+            &::-webkit-scrollbar-track-piece { //滚动条凹槽的颜色，还可以设置边框属性
+                background-color: transparent;
+            }
+
+            &::-webkit-scrollbar { //滚动条的宽度
+                width: 9px;
+                height: 9px;
+            }
+
+            &::-webkit-scrollbar-thumb { //滚动条的设置
+                background-color: #141e30;
+                background-clip: padding-box;
+                min-height: 28px;
+                border-radius: 5px;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background-color: rgba(247, 247, 247, 0.51);
+            }
         }
 
         .item {
@@ -87,6 +118,7 @@
 
             &:hover {
                 color: #fff;
+                background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .2), rgba(0, 0, 0, 0));
             }
 
             .index {

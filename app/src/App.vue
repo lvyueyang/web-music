@@ -3,8 +3,9 @@
         <header-bar></header-bar>
         <div class="content">
             <list></list>
-            <div class="music-lrc">
+            <div class="music-info">
                 <img src="" alt="">
+                <div class="name"></div>
                 <div class="lrc-wrap"></div>
             </div>
         </div>
@@ -45,7 +46,7 @@
             flex: 1;
             display: flex;
 
-            .music-lrc {
+            .music-info {
                 flex: 0 300px;
             }
         }

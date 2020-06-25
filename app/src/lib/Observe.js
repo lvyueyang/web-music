@@ -1,4 +1,4 @@
-class Observe {
+export default class Observe {
     constructor() {
         this.observes = {}
     }
@@ -7,7 +7,7 @@ class Observe {
         if (!this.observes[name]) {
             this.observes[name] = []
         }
-        this.observes.push(cb)
+        this.observes[name].push(cb)
     }
 
     once(name, cb) {
@@ -32,11 +32,11 @@ class Observe {
             return
         }
         if (typeof this.observes[name] === 'function') {
-            this.observes[name].apply(...args)
+            this.observes[name](...args)
         }
         if (Array.isArray(this.observes[name])) {
             this.observes[name].forEach(cb => {
-                cb.apply(...args)
+                cb(...args)
             })
         }
     }

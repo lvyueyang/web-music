@@ -3,15 +3,16 @@
         <div class="item">
             <i class="iconfont icon-skip-back-mini-fill"></i>
         </div>
-        <div class="item">
-            <i class="iconfont icon-play-fill"></i>
+        <div class="item" @click="handlerAudioPlay">
+            <i class="iconfont icon-play-fill" v-if="!state.playing"></i>
+            <i class="iconfont icon-stop-fill" v-else></i>
         </div>
         <div class="item">
             <i class="iconfont icon-skip-forward-mini-fill"></i>
         </div>
         <div class="progress">
             <div class="info">
-                <div class="name">歌曲名称</div>
+                <div class="name">{{item.title}}</div>
                 <div class="time">3:00 / 5:30</div>
             </div>
             <div class="line">
@@ -36,11 +37,37 @@
         name: 'Operate',
         props: {},
         data() {
-            return {}
+            return {
+                state: {
+                    playing: false
+                },
+                item: {}
+            }
         },
         mounted() {
+            this.init()
         },
-        methods: {}
+        methods: {
+            init() {
+                const audio = this.$song.audio
+                this.$song.on('play', item => {
+                    this.item = item
+                })
+                audio.addEventListener('play', e => {
+                    this.state.playing = true
+                })
+                audio.addEventListener('pause', e => {
+                    this.state.playing = false
+                })
+            },
+            handlerAudioPlay() {
+                if (this.state.playing) {
+                    this.$song.pause()
+                } else {
+                    this.$song.play()
+                }
+            }
+        }
     }
 </script>
 <style lang="scss">
