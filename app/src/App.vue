@@ -48,6 +48,9 @@
 
             .music-info {
                 flex: 0 300px;
+                @media (max-width: 750px) {
+                    display: none;
+                }
             }
         }
     }
