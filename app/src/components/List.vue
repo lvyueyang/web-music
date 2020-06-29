@@ -38,6 +38,7 @@
                 try {
                     this.list = await this.$utils.getJson('/jay-music/musicList.json')
                     this.$song.pushSong(this.list)
+                    this.$song.play(this.list[0])
                 } catch (e) {
                     console.error(e)
                 }

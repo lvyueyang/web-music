@@ -10,8 +10,11 @@
         <div class="item next" @click="$song.next()">
             <i class="iconfont icon-skip-forward-mini-fill"></i>
         </div>
-        <div class="item">
-            <i class="iconfont icon-order-play-line sort-icon"></i>
+        <div class="item" @click="handlerToggleMode">
+            <i class="iconfont icon-repeat-fill sort-icon" v-if="mode.active === 1"></i>
+            <i class="iconfont icon-order-play-line sort-icon" v-if="mode.active === 2"></i>
+            <i class="iconfont icon-repeat-one-fill sort-icon" v-if="mode.active === 3"></i>
+            <i class="iconfont icon-shuffle-line sort-icon" v-if="mode.active === 4"></i>
         </div>
         <div class="progress">
             <div class="info">
@@ -46,6 +49,9 @@
                 duration: {
                     total: 0,
                     current: 0,
+                },
+                mode: {
+                    active: 1
                 },
                 progress: 0
             }
@@ -87,6 +93,13 @@
                     this.duration.current = currentTime
                     this.progress = (currentTime / duration) * 100
                 })
+
+                window.addEventListener('keyup', e => {
+                    if (e.keyCode === 32 || e.code === 'Space') {
+                        console.log('Space')
+                        this.handlerAudioPlay()
+                    }
+                })
             },
             handlerAudioPlay() {
                 if (this.state.playing) {
@@ -95,6 +108,15 @@
                     this.$song.play()
                 }
             },
+            handlerToggleMode() {
+                let active = this.mode.active
+                if (active === 4) {
+                    active = 1
+                } else {
+                    active += 1
+                }
+                this.mode.active = active
+            }
         }
     }
 </script>

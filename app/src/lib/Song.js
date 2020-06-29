@@ -29,6 +29,7 @@ export default class Song extends Observe {
             audio.src = BASE_URL + item.path
             console.dir(audio)
             audio.load()
+            document.querySelector('title').innerHTML = item.title
         }
         audio.play()
         this.emit('play', this.song)
