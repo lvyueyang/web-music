@@ -19,7 +19,6 @@ jobs:
       with:
         node-version: '18'
         cache: 'yarn'
-        cache-dependency-path: '**/node_modules'
       
     - name: Update
       run: | 
