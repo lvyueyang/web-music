@@ -1,0 +1,157 @@
+:root {
+  --max-width: 750px;
+  --color-primary: #333;
+  --border-radius: 5px;
+  --font-size: 16px;
+  --search-height: 60px;
+  --player-height: 80px;
+}
+
+html {
+  background-color: #eee;
+}
+
+body {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  font-size: var(--font-size);
+}
+
+@media only screen and (min-width: 750px) {
+  body {
+    box-shadow: 0 0 5px #ccc;
+    overflow-x: hidden;
+    max-width: 600px;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  font-size: var(--font-size);
+}
+
+#search {
+  position: sticky;
+  top: 0;
+  height: var(--search-height);
+  flex: 0 0 var(--search-height);
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
+  box-shadow: 0 0 5px #ccc;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+#search input {
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
+  padding: 0 1em;
+  border: 1px solid #ccc;
+  outline: none;
+  border-radius: var(--border-radius);
+}
+
+#search input:focus {
+  border-color: var(--color-primary);
+}
+
+#list {
+  flex: 1;
+  min-height: calc(100vh - var(--search-height) - var(--player-height));
+}
+.loading {
+  text-align: center;
+  padding: 40px 15px;
+  color: #666;
+}
+#list .item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  margin: 10px 15px;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+#list .item.active {
+  border-color: #333;
+}
+
+#list .item .index {
+  color: #666;
+  margin-right: 8px;
+}
+#list .item .index::after {
+  content: '.';
+}
+#player {
+  position: sticky;
+  bottom: 0;
+  height: var(--player-height);
+  flex: 0 0 var(--player-height);
+  box-sizing: border-box;
+  background-color: #fff;
+  display: flex;
+  padding: 10px 15px;
+  box-shadow: 0 0 5px #ccc;
+  z-index: 10;
+}
+
+#player .cover {
+  --width: 60px;
+  position: relative;
+  width: var(--width);
+  height: var(--width);
+  flex: 0 0 var(--width);
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  margin-right: 15px;
+}
+#player .cover::after {
+  position: absolute;
+  content: '查看详情';
+  color: #fff;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+#player .cover img {
+  width: 100%;
+  display: block;
+}
+
+#player .info {
+  flex: 1;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+#player .info .name {
+  margin-bottom: 5px;
+}
+#audio {
+  width: 100%;
+  height: 100%;
+}
+#player .operate {
+  flex: 0 0 40px;
+  display: none;
+}

@@ -1,50 +1,41 @@
-# ！！！ gitee 给我封号了，用不了储存了。大家可以去咪咕听，或者用下面这个项目的软件听。
+# 一个简单的播放器，用于专门播放周杰伦的歌曲
 
-https://listen1.github.io/listen1/
+> 由于之前把 gitee 当做网盘来用被抓住封了，换了一个方式来解决。
 
-> 资源地址更换至码云  
-*********
-# 一个简单的播放器，从数据爬取处理到上传至七牛云再到前端页面展示  
+## 思路
 
-## 在这里你能了解(或者学习)到：
-1. Puppeteer 的基本使用  
-2. nodejs 的简单应用  
-3. 如何实现一个简易的多文件下载队列函数  
-4. 七牛云储存文件上传的入门姿势  
-5. 使用gulp来协助开发传统前端页面（sass编译，自动刷新）  
-6. 周杰伦的所有歌曲  
-> 其实我并不是周杰伦的歌迷，只是因为偶尔想听，却发现都收费了（qiong bi）。。。  
-如果侵权，请联系我，我将会全部删除。
+1. 基于 [jsososo/MiguMusicApi](https://github.com/jsososo/MiguMusicApi) 获取周杰伦的所有歌曲
+2. 将歌曲数据组合成一个大 json 然后上传到 gist 中储存，并且设置为公开
+3. 开一个 html 文件，写前端逻辑，直接 fetch gist 的 json 文件
+4. 使用 github action 每天定时执行同步
 
-## 言归正传  
-简单的介绍一下歌曲从获取到展示的过程 
+## 本次更新既要
 
-1. `getJsonData.js`
-使用 Puppeteer 在歌曲网站中拉取的数据，进行了相关处理转化为了歌曲列表的json数据
-2. `downloadMusic.js`
-使用`request`将歌曲下载到了本地，上面说的多文件下载相关的函数就是在这里。
-3. `uploadMusicQiNiu.js`
-使用七牛的sdk将文件上传至了七牛云进行了储存   
-> 因为直接使用引用的连接会经常出现连接失效，无法正常使用的问题，上次维护使用时是在在服务端定时的获取更新的方式，但是仍然会出现失效的问题，本次直接将全部歌曲上传至七牛云中供大家使用。还会自己最靠谱。。。
+1. 完全重写代码逻辑
+2. 前端 UI 重构
+3. 前端代码全部为原生（es6）
+4. 服务端逻辑重构
+5. 完全白嫖
 
-**七牛的配置项 `CONFIG.js` 请自行建立，格式如下**
-``` js
-module.exports = {
-    ACCESS_KEY: '',
-    SECRET_KEY: '',
-    bucket: ''
-}
+## 目录结构
+
 ```
-**在下载音乐到本地时，记得新建 `downloadFiles` 文件夹**  
-**代码并不是很多，详细了解请直接查看源码**
+index.html  // 前端界面
+client.js   // 前端逻辑脚本
+style.css   // 前端样式
 
-## 相关连接
-[我的博客](http://www.lvyueyang.top/)  
-[我的掘金主页](https://juejin.im/user/585407be61ff4b0063af58be)  
-[GitHub](https://github.com/lvyueyang)  
-[Puppeteer](https://zhaoqize.github.io/puppeteer-api-zh_CN/#/)  
-[gulp](https://www.gulpjs.com.cn/)    
-[sass](https://www.sass.hk/)    
-[七牛云](https://www.qiniu.com/)    
-[歌曲源地址](http://music.wandhi.com/?name=%E5%91%A8%E6%9D%B0%E4%BC%A6&type=netease)    
+server.js   // node 端同步逻辑
+```
 
+## 关于我
+
+[Github](https://github.com/lvyueyang)
+
+## 最后
+
+感谢 [jsososo](https://github.com/jsososo) 的项目
+
+## 再最后
+
+战无不胜的毛泽东思想万岁！  
+世界人民大团结万岁！

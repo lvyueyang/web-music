@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>听音乐</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="search">
+        <input type="search" placeholder="在这里关键字搜索" />
+      </div>
+      <main id="list">
+        <div class="loading">加载中，请稍后...</div>
+      </main>
+      <div id="player">
+        <div class="cover">
+          <img src="" alt="" />
+        </div>
+        <div class="info">
+          <!-- <div class="name"></div> -->
+          <audio src="" id="audio" controls="controls"></audio>
+        </div>
+        <div class="operate"></div>
+      </div>
+    </div>
+    <script src="./client.js"></script>
+  </body>
+</html>

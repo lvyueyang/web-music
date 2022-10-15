@@ -1,18 +1,15 @@
 {
-  "name": "new1",
-  "version": "1.0.0",
-  "description": "",
-  "main": "gulpfile.js",
+  "name": "jay-music",
+  "version": "3.0.0",
+  "description": "专门播放周杰伦歌曲的项目",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "update:data": "node ./server.js",
+    "dev": ""
   },
-  "author": "",
-  "license": "ISC",
+  "author": "lvyueyang",
+  "license": "MIT",
   "dependencies": {
-    "browser-sync": "^2.24.4",
-    "gulp": "^3.9.1",
-    "gulp-px2rem": "^1.0.12",
-    "gulp-px2rem-plugin": "^0.4.0",
-    "gulp-sass": "^4.0.1"
+    "@octokit/core": "^4.1.0",
+    "migu-music-api": "^1.0.1"
   }
 }
