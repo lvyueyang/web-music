@@ -14,13 +14,11 @@ jobs:
         node-version: [16.x, 18.x]
     
     steps:
-    - uses: actions/checkout@v3
     - name: 数据同步
     - uses: actions/setup-node@v3
       with:
         node-version: '16'
         cache: 'yarn'
         cache-dependency-path: '**/node_modules'
-    
     - run: yarn
     - run: GITHUB_TOKEN=${{secrets.TOKEN}} npm run update:data
