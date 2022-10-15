@@ -1,14 +1,15 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: 数据同步
 
 on:
   schedule:
   - cron: '0 21 * * *'
+  workflow_dispatch:
 
 jobs:
-  build:
+  update:
 
     runs-on: ubuntu-latest
 
