@@ -9,6 +9,33 @@ const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 });
 
+function main() {
+  console.log('开始获取');
+  return getAllData()
+    .then((d) => {
+      const data = { list: d, errData: d.filter((item) => !item.songInfo) };
+      if (d.length < 360) {
+        console.log('歌曲数据不全，不推送');
+        throw new Error('歌曲数据不全');
+      }
+      updateData(data)
+        .then((res) => {
+          console.log('更新完成', res);
+        })
+        .catch((e) => {
+          console.error('更新失败', e);
+        });
+    })
+    .catch((e) => {
+      console.error('更新失败', e);
+    })
+    .finally(() => {
+      console.log('结束');
+    });
+}
+
+main();
+
 /** 将数据更新到 gist */
 function updateData(data) {
   return octokit.request('PATCH /gists/cb11eaafbe69fc7ba63c38f9ff40e0d9', {
@@ -101,26 +128,3 @@ function getAllData() {
     });
   });
 }
-
-function main() {
-  console.log('开始获取');
-  return getAllData()
-    .then((d) => {
-      const data = { list: d, errData: d.filter((item) => !item.songInfo) };
-      updateData(data)
-        .then((res) => {
-          console.log('更新完成', res);
-        })
-        .catch((e) => {
-          console.error('更新失败', e);
-        });
-    })
-    .catch((e) => {
-      console.error('更新失败', e);
-    })
-    .finally(() => {
-      console.log('结束');
-    });
-}
-
-main();

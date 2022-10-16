@@ -5,9 +5,12 @@
   --font-size: 16px;
   --search-height: 60px;
   --player-height: 80px;
+  --color-disabled-text: #999;
+  --color-disabled-bg: #ddd;
 }
 
 html {
+  position: relative;
   background-color: #eee;
 }
 
@@ -19,10 +22,11 @@ body {
 }
 
 @media only screen and (min-width: 750px) {
-  body {
+  body,
+  .modal {
     box-shadow: 0 0 5px #ccc;
     overflow-x: hidden;
-    max-width: 600px;
+    max-width: 600px !important;
   }
 }
 
@@ -67,33 +71,82 @@ input {
   flex: 1;
   min-height: calc(100vh - var(--search-height) - var(--player-height));
 }
+
 .loading {
   text-align: center;
   padding: 40px 15px;
   color: #666;
 }
+
 #list .item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: #fff;
   margin: 10px 15px;
-  padding: 10px;
+  padding: 0 10px;
   border-radius: var(--border-radius);
   cursor: pointer;
   border: 1px solid transparent;
-}
-
-#list .item.active {
-  border-color: #333;
 }
 
 #list .item .index {
   color: #666;
   margin-right: 8px;
 }
+
 #list .item .index::after {
   content: '.';
 }
+
+#list .item .name {
+  flex: 1;
+  padding: 10px 0;
+}
+
+#list .item .more {
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  background-color: var(--color-disabled-bg);
+}
+
+#list .item .more img {
+  width: 18px;
+  vertical-align: middle;
+  opacity: 0.6;
+  display: none;
+  padding: 6px;
+}
+
+#list .item.active {
+  border-color: #333;
+}
+
+#list .item.active .index {
+  color: #333;
+}
+#list .item[disabled='true'] {
+  border-color: var(--color-disabled-bg);
+  background-color: var(--color-disabled-bg);
+  color: var(--color-disabled-text);
+}
+#list .item[disabled='true'] .index {
+  color: #999;
+}
+#list .item[disabled='true'] .add {
+  display: block;
+}
+#list .item[disabled='true'] .more {
+  background: #fff;
+}
+#list .item[disabled='false'] .remove {
+  display: block;
+}
+
 #player {
   position: sticky;
   bottom: 0;
@@ -118,6 +171,7 @@ input {
   cursor: pointer;
   margin-right: 15px;
 }
+
 #player .cover::after {
   position: absolute;
   content: '查看详情';
@@ -132,6 +186,7 @@ input {
   justify-content: center;
   font-size: 12px;
 }
+
 #player .cover img {
   width: 100%;
   display: block;
@@ -147,11 +202,63 @@ input {
 #player .info .name {
   margin-bottom: 5px;
 }
+
 #audio {
   width: 100%;
-  height: 100%;
 }
+
 #player .operate {
   flex: 0 0 40px;
   display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100;
+  transform: translateX(-50%);
+  max-width: var(--max-width);
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  display: none;
+}
+.modal > div {
+  background-color: #fff;
+}
+.modal .title {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.modal .body {
+  padding: 10px;
+}
+
+.modal .footer {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #eee;
+  cursor: pointer;
+}
+.modal .cover {
+  max-width: 40%;
+  display: block;
+  margin: 10px auto;
+}
+.modal .lyric {
+  text-align: center;
+  max-height: 50vh;
+  overflow-y: auto;
+  margin: 30px auto;
+  line-height: 2;
 }
