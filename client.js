@@ -13,6 +13,7 @@
       value: 'random',
     },
   };
+  const CATCH_DATA_KEY = 'MUSIC_DATA';
 
   const coverDom = document.querySelector('#player .cover img');
   const audioDom = document.querySelector('#audio');
@@ -106,26 +107,51 @@
       });
   }
 
-  /** 拉取歌曲列表 */
-  function getList() {
-    getJsonUrl().then((url) => {
-      fetch(url)
+  function getDataList() {
+    return getJsonUrl().then((url) => {
+      return fetch(url)
         .then((res) => res.json())
         .then((res) => {
-          songList = res.list.map((item) => {
-            return {
-              ...item,
-              disabled: disabledList.includes(item.cid),
-              songInfo: item.songInfo,
-            };
-          });
-          if (!currentSong) {
-            currentSong = songList[0];
-          }
-          renderList();
-          setPlayer();
+          return res.list;
         });
     });
+  }
+
+  /** 拉取歌曲列表 */
+  function getList() {
+    const CATCH_DATA = window.localStorage.getItem(CATCH_DATA_KEY);
+    const data = isJson(CATCH_DATA);
+    if (data) {
+      if ((data.validDate = getToday())) {
+        renderDataList(data.list);
+        return;
+      }
+    }
+    getDataList().then((list) => {
+      window.localStorage.setItem(
+        CATCH_DATA_KEY,
+        JSON.stringify({
+          list,
+          validDate: getToday(), // 缓存有效日期
+        }),
+      );
+      renderDataList(list);
+    });
+  }
+
+  function renderDataList(list) {
+    songList = list.map((item) => {
+      return {
+        ...item,
+        disabled: disabledList.includes(item.cid),
+        songInfo: item.songInfo,
+      };
+    });
+    if (!currentSong) {
+      currentSong = songList[0];
+    }
+    renderList();
+    setPlayer();
   }
 
   function catchDisableList() {
@@ -253,3 +279,27 @@
     modalDom.style.display = '';
   });
 })();
+
+function isJson(value) {
+  try {
+    return JSON.parse(value);
+  } catch (e) {
+    return false;
+  }
+}
+
+function getDate(date) {
+  const Y = date.getFullYear();
+  const M = date.getMonth();
+  const D = date.getDay();
+
+  return `${Y}-${M}-${D}`;
+}
+
+function getToday() {
+  return getDate(new Date());
+}
+
+function getTomorrow() {
+  return getDate(new Date(new Date().getTime() + 1000 * 60 * 60 * 24));
+}
