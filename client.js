@@ -100,6 +100,12 @@
   function getJsonUrl() {
     return fetch(
       'https://api.github.com/gists/cb11eaafbe69fc7ba63c38f9ff40e0d9',
+      {
+        headers: {
+          Authorization: '',
+          Accept: 'application/vnd.github+json'
+        }
+      }
     )
       .then((res) => res.json())
       .then((res) => {
