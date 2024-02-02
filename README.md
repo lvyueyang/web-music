@@ -2,6 +2,8 @@
 
 > 由于之前把 gitee 当做网盘来用被抓住封了，换了一个方式来解决。
 
+## !!! 目前有了一个新的白嫖思路，这次可以随意听任意的歌曲，功能更加强大，[https://github.com/lvyueyang/bb-music](https://github.com/lvyueyang/bb-music)  
+
 ## 思路
 
 1. 基于 [jsososo/MiguMusicApi](https://github.com/jsososo/MiguMusicApi) 获取周杰伦的所有歌曲
