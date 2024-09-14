@@ -2,7 +2,7 @@
 
 > 由于之前把 gitee 当做网盘来用被抓住封了，换了一个方式来解决。
 
-## !!! 目前有了一个新的白嫖思路，这次可以随意听任意的歌曲，功能更加强大，[https://github.com/lvyueyang/bb-music](https://github.com/lvyueyang/bb-music)  
+## !!! 目前有了一个新的白嫖思路，这次可以随意听任意的歌曲，功能更加强大，[https://github.com/bb-music/flutter-app](https://github.com/bb-music/flutter-app)
 
 ## 思路
 
